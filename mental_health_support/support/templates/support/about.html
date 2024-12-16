@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About Us</title>
+    {% load static %} 
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff; /* Light background for contrast */
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            display: flex; /* Use Flexbox for horizontal layout */
+            justify-content: center; /* Center the items horizontally */
+            flex-wrap: wrap; /* Allow wrapping to the next line if needed */
+            gap: 20px; /* Space between the cards */
+        }
+
+        .freedom {
+            border: 1px solid #BFBFBF; /* Gray border */
+            background-color: #ffffff; /* White background for the card */
+            padding: 20px; /* Space inside the card */
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+            max-width: 300px; /* Maximum width for each card */
+            flex: 1; /* Allow cards to grow and shrink */
+            min-width: 150px; /* Minimum width for responsive design */
+            height: 40vh;
+            align-items: center;
+        }
+
+        img {
+            display: block; /* Center the image */
+            margin: 0 auto; /* Center the image */
+        }
+
+        h3 {
+            text-align: center; /* Center the heading */
+            color: #333; /* Darker text color */
+        }
+
+        p {
+            text-align: center; /* Center the paragraph text */
+            color: #666; /* Lighter text color */
+        }
+        .refreshment{
+            background-color: rgb(31,58,68);
+            padding-top: 70px;
+            height: 50vh;
+            border-radius: 7%;
+        }
+        .refreshment p,h3{
+            color:white ;
+            padding-top: 20px;
+            
+        }
+        .quote{
+            width: 100%;
+            background-color:rgb(31,58,68) ;
+            height: 15vh;
+        }
+        .quote p{
+            color: white;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">About</h1>
+    <div class="container">
+        <div class="freedom">
+            <img src="{% static 'support/freedom.png' %}" alt="logo" width="60" height="45">
+            <h3>Freedom of Speech</h3>
+            <p>Speak openly about mental health <br> your voice can break the silence and 
+            <br> inspire hope.</p>
+        </div>
+        <div class="refreshment">
+            <img src="{% static 'support/daily.png' %}" alt="logo" width="60" height="45">
+            <h3>Daily Refreshment</h3>
+            <p>Take a moment each day to refresh your mind <br> small breaks lead to big improvements in
+            <br>well being</p>
+        </div>
+        <div class="freedom">
+            <img src="{% static 'support/tours.png' %}" alt="logo" width="60" height="45">
+            <h3>Tour others life</h3>
+            <p>Walk in someone's shoes understanding<br> other's experiences fosters empathy, 
+            <br>compassion and deeper connections</p>
+        </div>
+    </div>
+    <div class="quote">
+        <p>"Self care is not a luxury.it's a necessity.Without it,<br>
+        We cannot be our best selves,mentally,emotionally,
+    <br>Or physically "</p>
+
+    </div>
+</body>
+</html>

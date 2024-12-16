@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOVANURTURE - Chat</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+        }
+        .chat-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background-color: #f4f4f4;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .chat-box {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px;
+            background: white;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .input-container {
+            display: flex;
+        }
+        .input-container input {
+            flex: 1;
+            padding: 10px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .input-container button {
+            padding: 10px;
+            background-color: rgb(34, 64, 74);
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        .message {
+            margin: 10px 0;
+        }
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgba(0,0,0,0.4); 
+        }
+        .modal-content {
+            background-color: rgb(34, 64, 74);
+            color: white;
+            margin: 15% auto; 
+            padding: 20px;
+            border-radius: 8px;
+            width: 80%; 
+        }
+        .close {
+            color: #fff; /* Close button color */
+            float: right;
+            font-size: 28px;
+            cursor: pointer;
+        }
+        .close:hover {
+            color: rgb(165, 217, 208); /* Hover color for close button */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="chat-container">
+        <h2>Chat with Us</h2>
+        <button onclick="openModal()" style="padding: 10px; background-color: rgb(34, 64, 74); color: white; border: none; border-radius: 5px;">Open Chatbot</button>
+        <div class="chat-box" id="chat-box">
+          
+        </div>
+    </div>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Cody AI Chatbot</h2>
+            <iframe
+                src="https://embed.cody.bot/9d54bf22-8e62-4c98-8a90-ad00912fe731"
+                title="Cody AI Chatbot"
+                style="border: 0; width: 100%; height: 600px; border-radius: 5px;"
+                scrolling="no"
+                frameBorder="1"
+                allowFullScreen
+            ></iframe>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            document.getElementById('modal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside of the modal content
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOVANURTURE</title>
+    {% load static %}
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body {
+            display: flex;
+            margin: 0;
+            height: 100vh;
+        }
+
+        /* Sidebar (Left) */
+        .whole {
+            background-color: rgb(34, 64, 74);
+            width: 18%;
+            color: white;
+            padding: 20px 10px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Main Content Area */
+        .main-content {
+            flex: 1; /* Take remaining space */
+            display: flex;
+            flex-direction: column; /* Stack elements vertically */
+            justify-content: flex-start; /* Align items to the start */
+            align-items: center; /* Center items horizontally */
+            background-color: #f5f5f5;
+            padding: 30px;
+        }
+        .menu {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 12px 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            text-decoration: none; /* Remove underline from links */
+            color: white; /* Text color for links */
+        }
+
+        .menu-item:hover {
+            background-color: rgba(165, 217, 208, 0.4);
+        }
+
+        .menu-item i {
+            font-size: 20px;
+        }
+
+        .menu-item.active {
+            background-color: rgb(165, 217, 208);
+            color: rgb(34, 64, 74);
+            font-weight: bold;
+        }
+
+        .container {
+    max-width: 800px;
+    width: 100%;
+    padding: 30px;
+    background-color: white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+
+    .post {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    }
+
+    .post-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+     .post-content {
+    flex: 1;
+}
+
+
+    .post-username {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .post-text {
+      color: #555;
+      line-height: 1.5;
+    }
+</style>
+</head>
+<body>
+    <div class="whole">
+        <div class="logo">
+            <img src="{% static 'support/logo.png' %}" alt="logo" width="60" height="45">
+            <p>Novanurture</p>
+        </div>
+        <div class="menu">
+            <a href="{% url 'userdash' %}" class="menu-item active" onclick="setActive(this)">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="{% url 'reflect' %}" class="menu-item" onclick="setActive(this)">
+                <i class="fas fa-brain"></i>
+                <span>Reflection</span>
+            </a>
+            <a href="{% url 'post' %}" class="menu-item" onclick="setActive(this)">
+                <i class="fas fa-pen"></i>
+                <span>Post</span>
+            </a>
+        </div>
+    </div>
+    <div>
+       
+</div>
+<div class="main-content">
+<div class="container">
+    {% for post in posts %}
+    <div class="post">
+        <img src="{% static 'support/anony.png' %}" alt="Profile Picture" class="post-image">
+        <div class="post-content">
+            <div class="post-username">@{{ post.user.username }}</div>
+            <div class="post-text">{{ post.text }}</div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+</div>
+
+<script>
+// Fetch the posts from the server and display them
+fetchAndDisplayPosts();
+
+async function fetchAndDisplayPosts() {
+    try {
+        const response = await fetch('{% url "get_posts" %}');
+        const posts = await response.json();
+
+        const container = document.querySelector('.container');
+        posts.forEach(post => {
+            const postElement = createPostElement(post);
+            container.appendChild(postElement);
+        });
+    } catch (error) {
+        console.error('Error fetching posts:', error);
+    }
+}
+
+function createPostElement(post) {
+    const postElement = document.createElement('div');
+    postElement.classList.add('post');
+
+    postElement.innerHTML = `
+        <img src="{% static 'support/anony.png' %}" alt="Profile Picture" class="post-image">
+        <div class="post-content">
+            <div class="post-username">@${post.user.username}</div>
+            <div class="post-text">${post.text}</div>
+        </div>
+    `;
+
+    return postElement;
+}
+</script>
+</body>
+</html>

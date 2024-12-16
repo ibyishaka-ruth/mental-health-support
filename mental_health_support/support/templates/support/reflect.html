@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOVANURTURE</title>
+    {% load static %}
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body {
+            display: flex;
+            margin: 0;
+            height: 100vh;
+        }
+
+        /* Sidebar (Left) */
+        .whole {
+            background-color: rgb(34, 64, 74);
+            width: 18%;
+            color: white;
+            padding: 20px 10px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Main Content Area */
+        .main-content {
+            flex: 1; /* Take remaining space */
+            display: flex;
+            flex-direction: column; /* Stack elements vertically */
+            justify-content: flex-start; /* Align items to the start */
+            align-items: center; /* Center items horizontally */
+            background-color: #f5f5f5;
+            padding: 30px;
+        }
+
+        .text-input-container {
+            width: 80%; /* Set width for the input area */
+            margin-bottom: 20px; /* Space below the input area */
+        }
+
+        .text-input {
+            width: 80%; /* Full width of the container */
+            height: 100px; /* Height of the text area */
+            padding: 20px; /* Padding inside the text area */
+            border: 1px solid #ccc; /* Border style */
+            border-radius: 8px; /* Rounded corners */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Font style */
+        }
+
+        .share-button {
+            /* Padding for the button */
+            background-color: rgb(165, 217, 208); /* Button background color */
+            border: none; /* Remove border */
+            border-radius: 0px; /* Rounded corners */
+            cursor: pointer; /* Pointer cursor on hover */
+            font-size: 10px; /* Font size */
+            color: black; /* Text color */
+            transition: background-color 0.3s ease; /* Transition effect */
+            padding: 0px;
+        }
+
+        .share-button:hover {
+            background-color: rgb(145, 207, 198); /* Darker shade on hover */
+        }
+
+        .collapsible-container {
+            display: flex; /* Use flexbox for horizontal alignment */
+            position: relative; /* Change to relative */
+            top: 60px;
+            left: 0; /* Reset left position */
+            width: auto; /* Auto width */
+            gap: 10px; /* Space between elements */
+        }
+
+        .menu {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 12px 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            text-decoration: none; /* Remove underline from links */
+            color: white; /* Text color for links */
+        }
+
+        .menu-item:hover {
+            background-color: rgba(165, 217, 208, 0.4);
+        }
+
+        .menu-item i {
+            font-size: 20px;
+        }
+
+        .menu-item.active {
+            background-color: rgb(165, 217, 208);
+            color: rgb(34, 64, 74);
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+
+            .whole {
+                width: 100%;
+                padding: 20px;
+            }
+
+            .main-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="whole">
+        <div class="logo">
+            <img src="{% static 'support/logo.png' %}" alt="logo" width="60" height="45">
+            <p>Novanurture</p>
+        </div>
+        <div class="menu">
+            <a href="{% url 'userdash' %}" class="menu-item active" onclick="setActive(this)">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="{% url 'reflect' %}" class="menu-item" onclick="setActive(this)">
+                <i class="fas fa-brain"></i>
+                <span>Reflection</span>
+            </a>
+            <a href="{% url 'post' %}" class="menu-item" onclick="setActive(this)">
+                <i class="fas fa-pen"></i>
+                <span>Post</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- <div class="main-content"> -->
+      
+        <div class="text-input-container">
+            <p style="align-self: center;padding: 20px;"> create a new post</p>
+            <textarea class="text-input" placeholder="Type your post here..."></textarea>
+         <button class="share-button">Share</button>
+        </div>
+        
+        <img src="{% static 'support/refle.png' %}" alt="logo" width="40%" height="auto">
+    <!-- </div> -->
+    <script>
+        // Add event listener to the "Share" button
+        const shareButton = document.querySelector('.share-button');
+shareButton.addEventListener('click', async (event) => {
+    event.preventDefault(); // Prevent the default button click behavior
+    await sharePost();
+});
+
+const savePostUrl = '{% url "save_post" %}';
+
+async function sharePost() {
+    const textInput = document.querySelector('.text-input');
+    const postText = textInput.value.trim();
+
+    if (postText) {
+        try {
+            // Save the post on the server
+            await fetch(savePostUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: JSON.stringify({ text: postText })
+            });
+
+            // Clear the text input
+            textInput.value = '';
+
+            // Redirect to the Post page
+            window.location.href = "{% url 'post' %}";
+        } catch (error) {
+            console.error('Error saving post:', error);
+        }
+    }
+}
+
+    </script>
+</body>
+</html>

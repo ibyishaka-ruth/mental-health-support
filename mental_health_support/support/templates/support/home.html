@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOVANURTURE</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'support/style.css' %}">
+</head>
+<body>
+    <div class="navigation">
+        <nav>
+            <img src="{% static 'support/logo.png' %}" alt="logo" width="60" height="45">
+            <h1>Novanurture</h1>
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'about' %}">About</a>
+            <a href="{% url 'testimonies' %}">Testimonies</a>
+            <a href="{% url 'contact_us' %}">Contact Us</a>
+        </nav>
+    </div>
+    <div class="container">
+        <div class="catalog">
+            <h4>Health Minds, Happy<br>Live mental Health</h4>
+            <p>Your mental health matters, You are not alone reach out when you are ready<br>Support is here for you!</p>
+        </div>
+        <div class="guy">
+            <img src="{% static 'support/guy.png' %}" alt="logo" width="60" height="45">
+        </div>
+    </div>
+    <div class="button-container" style=" gap: 10px;">
+        <a href="{% url 'login' %}" style="text-decoration: none;">
+        <button style="background-color: rgb(33, 61, 72);padding-inline: 50px ;margin-inline-start: 40px;border-radius: 20px;color: white;">Login</button>
+        </a>
+        <a href="{% url 'register' %}" style="text-decoration: none;">
+        <button style="background-color: rgb(33, 61, 72);padding-inline: 40px;margin-left: 50px ;border-radius: 20px;color: white;">Register</button>
+          </a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,188 @@
+{% load static %}
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"> 
+</head>
+<body>
+    <h1>Contact Us</h1>
+    <form action="{% url 'contact_us' %}" method="post">
+        {% csrf_token %}
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" required></textarea>
+
+        <button type="submit">Send Message</button>
+    </form>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+.centered-paragraph {
+  text-align: center;
+  margin: 0 auto;
+}
+
+
+.container {
+    max-width: 1919px;
+    margin: 0 auto;
+    padding: 40px;
+}
+
+/* FAQ Section */
+.faq-section {
+    margin-top: 40px;
+}
+
+.faq-item {
+    border-bottom: 1px solid #ccc;
+    padding: 20px 0;
+}
+
+.faq-item h2 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.faq-item p {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Footer */
+.footer {
+    background-color:  rgb(34, 64, 74);
+    color: #fff;
+    padding: 40px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+}
+
+.logo-section p {
+    font-size: 16px;
+}
+
+.services-section,
+.contact-section,
+.links-section {
+    flex-basis: 25%;
+}
+
+.services-section h3,
+.contact-section h3,
+.links-section h3 {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.services-section ul,
+.links-section ul {
+    list-style-type: none;
+}
+
+.services-section li,
+.links-section li {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.contact-section p {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+</style>
+
+<body>
+    <p class="centered-paragraph">FAQ</p>
+    <div class="container">
+        <h1>Navigate the frequently asked questions across</h1>
+        <div class="faq-section">
+            <div class="faq-item">
+                <h2>When I post, isn't my information shared?</h2>
+                <p>Your privacy is our priority. Rest assured, any information you provide will remain confidential and will never be shared with third parties.</p>
+            </div>
+            <div class="faq-item">
+                <h2>What if someone want to have a one-on-one consultancy</h2>
+                <p></p>
+            </div>
+            <div class="faq-item">
+                <h2>How can I benefit from working with a mental health consultant?</h2>
+                <p></p>
+            </div>
+            <div class="faq-item">
+                <h2>What types of issues can a mental health consultant help with?</h2>
+                <p></p>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="logo-section">
+                <img src="{% static 'support/logo.png' %}" alt="NovaNurture" class="logo">
+                <p>Empowering Minds, Inspiring Hope</p>
+            </div>
+            <div class="services-section">
+                <h3>Services</h3>
+                <ul>
+                    <li>Freedom of speech</li>
+                    <li>Tour others lives</li>
+                    <li>Daily refreshment</li>
+                    <li>Interactive platform</li>
+                </ul>
+            </div>
+            <div class="contact-section">
+                <h3>Contact</h3>
+                <p>+250 784 610 058</p>
+                <p>mwizarora@nn.com</p>
+                <p>KN 812, Nyarirumbo</p>
+            </div>
+            <div class="links-section">
+                <h3>Links</h3>
+                <ul>
+                    <li>Privacy Policy</li>
+                    <li>Term Of Use</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

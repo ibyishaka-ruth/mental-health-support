@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOVANURTURE</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'support/style.css' %}">
+    <style>
+        body {
+            background-color: rgb(33, 63, 73);
+            display: flex;
+            justify-content: center; 
+            align-items: center;
+            height: 100vh; 
+            margin: 0;
+        }
+        .container {
+            display: flex;
+            flex-direction: row; 
+            align-items:center; 
+            gap: 60px; 
+        }
+        .inputs {
+            padding: 20px;
+            background-color: rgb(88, 104, 110);
+            border-radius: 8px;
+            width: 70vh;
+        }
+        label {
+            color: antiquewhite; 
+            display: inline-block; 
+            margin-right: 10px;
+        }
+        input {
+            background-color: rgb(88, 104, 110); 
+            color: antiquewhite; 
+            border: 1px solid rgb(162, 173, 178);
+            border-radius: 5px;
+            padding: 10px; 
+            width: calc(100% - 22px); 
+        }
+        input::placeholder {
+            color: rgb(146, 160, 165); 
+        }
+        .photo img {
+            width: 450px; 
+            height: 450px; 
+        }
+        button {
+            background-color: rgb(165, 217, 208);
+            width: 100%;
+            border-radius: 10px;
+            padding: 16px;
+            border: none; 
+            cursor: pointer; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="photo" style="text-align:left;">
+            <img src="{% static 'support/login guy.png' %}" alt="logo">
+        </div>
+        <div class="inputs">
+            <p style="color: antiquewhite; font-size: large; font-weight: bold;">REGISTER</p>
+            <p style="font-family: 'Times New Roman', Times, serif; color: antiquewhite;">Register to be one of us!</p>
+            <form method="post" action="{% url 'register' %}">
+                {% csrf_token %}
+                <label for="email">Email</label><br>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                <br><br>
+                <label for="password">Password</label><br>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                <br><br>
+                <label for="confirm_password">Confirm Password</label><br>
+                <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm your password" required>
+                <br><br>
+                <button type="submit">REGISTER</button>
+            </form>
+            <p style="color: white;text-align: center;">Have an account? <a href="{% url 'login' %}" style="color: lightblue;">Login Here</a></p>
+        </div>
+    </div>
+</body>
+</html>
